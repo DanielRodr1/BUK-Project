@@ -1,0 +1,104 @@
+.navbar {
+    background-color: #BFD4E8;
+}
+
+.navbar-nav .nav-link {
+    color: black;
+}
+
+.container2 {
+    padding: 0;
+    overflow: hidden;
+}
+
+.row1 {
+    position: relative;
+    text-align: center;
+}
+
+.Empresa {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgb(255, 255, 255);
+    font-size: 5em;
+    text-decoration: none;
+    font-family: 'Acme';
+    max-width: 200px; /* Ajusta el ancho máximo según tu diseño */
+    width: 100%; /* Hace que el ancho sea el 100% del contenedor */
+}
+
+.btnRegistro {
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Acme';
+    background-color: black;
+    padding: 10px 20px; /* Añadido para darle algo de espacio al botón */
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    max-width: 200px; /* Ajusta el ancho máximo según tu diseño */
+    width: 100%; /* Hace que el ancho sea el 100% del contenedor */
+}
+
+.row2 {
+    margin-top: 20px;
+}
+
+.col-md-8{
+    padding: 0 0;
+}
+
+h1 {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    color: #467FB3;
+    font-size: 2.5em;
+    margin-left: 35px;
+}
+
+.text {
+    font-size: 1.4em;
+    font-family: 'Poppins';
+    margin-left: 50px;
+}
+
+.point {
+    margin-bottom: 40px;
+    font-size: 1.3em;
+    font-family: 'Poppins';
+    margin-left: 60px;
+}
+
+.img {
+    max-width: 100%;
+}
+
+.img2 {
+    max-width: 100%;
+}
+
+footer {
+    background-color: #BFD4E8;
+    color: #568abb00;
+    text-align: center;
+    margin-top: 20px;
+    
+}
+
+@font-face {
+    font-family: 'Acme';
+    src: url('../../font-Family/Acme-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../../font-Family/Poppins-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+}

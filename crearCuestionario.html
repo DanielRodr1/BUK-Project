@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-4C2PxmMj1ZI8Y+9H54uN5IsZ6pJuhtO5YOb7WnHk/KR4J6XGz9znTyy7RzyffsVH" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="public/css/cuestionario.css"/>
+    <title>crearCuestionario</title>
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="homeJefe.html"><img src="img/logo.png" alt="logo de la empresa" class="img-fluid logoEmpresa"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="homeJefe.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="verConvocatoriaJefe.php">Convocatorias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="abrirConvocatoria.html">Crear Convocatoria</a>
+                    </li>
+                </ul>
+                
+                <!-- Nuevo elemento con el ícono a la derecha -->
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <form action="Clases/cerrarSesion.php" method="post" class="nav-link">
+                            <button type="submit" class="btn btn-link">
+                                <i class="far fa-user-circle fa-2x"></i> Cerrar Sesión
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid firstCont">
+
+        <a href="abrirConvocatoria.html" style="font-size: 17px; font-weight: bolder; text-decoration: underline;">
+            <button class="btn" type="button">
+                << Regresar
+            </button>
+        </a>
+        
+        <h2>Preguntas para los Postulantes</h2>
+
+        <form action="Clases/Cuestionario.php" method="POST" onsubmit="return validarFormulario();">
+            <div id="preguntasContainer">
+                <!-- Pregunta 1 -->
+                <div class="preguntaContainer">
+                    <div class="firstRow row">
+                        <div class="col-md-4 text-md-end">
+                            <label for="pregunta1">Pregunta 1: </label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control w-75 pregunta" name="preguntas[1][texto]" placeholder="Ejemplo: ¿Qué nivel de educación tiene?" required>
+                            <div class="firstInFirst row respuestaContainer">
+                                <div class="input-group w-75">
+                                    <button type="button" class="btn" onclick="agregarCampoRespuesta(this)">+</button>
+                                    <input type="text" class="form-control w-50 respuesta" name="preguntas[1][alternativas][]" placeholder="Ejemplo: Educación Primaria" required>
+                                    <input type="number" class="form-control w-5 puntaje" name="preguntas[1][alternativas][]" placeholder="Puntos" required min="0" max="60" oninput="validarPuntaje(this)">
+                                </div>
+                            </div>
+                            <p class="mensajePuntaje" style="color: red; margin-top: 5px; text-align: center;"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="btnNewContainer">
+                <button type="button" class="btnNew btn" onclick="agregarNuevaPregunta()">Nueva Pregunta</button>
+            </div>
+        
+            <button class="btn-1 btn btn-dark" type="submit" name="guardarCuestionario">Publicar Convocatoria</button>
+        </form>
+
+    </div>
+
+    <footer>
+        ola <br> ol
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/761684499b.js" crossorigin="anonymous"></script>
+    <script>
+        function validarFormulario() {
+            // Realiza cualquier validación adicional aquí si es necesario
+            
+            // Validar puntajes
+            var puntajes = document.querySelectorAll('.puntaje');
+            for (var i = 0; i < puntajes.length; i++) {
+                validarPuntaje(puntajes[i]);
+            }
+
+            // Validar preguntas sin respuestas
+            var preguntasSinRespuestas = document.querySelectorAll('.preguntaContainer input.pregunta:not(:valid)');
+            if (preguntasSinRespuestas.length > 0) {
+                alert('Por favor, completa todas las preguntas y respuestas.');
+                return false;
+            }
+
+            return true; // Devuelve true para enviar el formulario
+        }
+    
+        let preguntaCount = 1;  // Iniciar el contador desde 1
+    
+        function agregarCampoRespuesta(boton) {
+            var respuestaContainer = boton.closest('.preguntaContainer').querySelector('.respuestaContainer');
+            var nuevoIndice = respuestaContainer.querySelectorAll('.input-group').length;
+            var preguntaContainer = boton.closest('.preguntaContainer');
+            var indicePregunta = obtenerIndicePregunta(preguntaContainer);
+
+            var nuevoCampo = document.createElement('div');
+            nuevoCampo.className = 'input-group w-75';
+            nuevoCampo.innerHTML = `
+                <button type="button" class="btn" onclick="eliminarCampoRespuesta(this)">-</button>
+                <input type="text" class="form-control w-50 respuesta" name="preguntas[${indicePregunta}][alternativas][${nuevoIndice}][texto]" placeholder="Nuevo ejemplo" required>
+                <input type="number" class="form-control w-5 puntaje" name="preguntas[${indicePregunta}][alternativas][${nuevoIndice}][puntos]" placeholder="Puntos" required min="0" max="60" oninput="validarPuntaje(this)">
+            `;
+
+            respuestaContainer.appendChild(nuevoCampo);
+        }
+
+
+        function obtenerIndicePregunta(preguntaContainer) {
+            var preguntas = document.querySelectorAll('.preguntaContainer');
+            return Array.from(preguntas).indexOf(preguntaContainer) + 1;
+        }
+
+    
+        function eliminarCampoRespuesta(boton) {
+            boton.closest('.input-group').remove();
+        }
+    
+        function agregarNuevaPregunta() {
+            var preguntasContainer = document.getElementById('preguntasContainer');
+            var nuevasPreguntas = document.querySelectorAll('.preguntaContainer');
+
+            // Obtener el próximo índice basándote en la cantidad actual de preguntas
+            var nuevoIndice = nuevasPreguntas.length + 1;
+
+            var nuevaPreguntaContainer = document.createElement('div');
+            nuevaPreguntaContainer.className = 'preguntaContainer';
+
+            nuevaPreguntaContainer.innerHTML = `
+                <div class="firstRow row">
+                    <div class="col-md-4 text-md-end">
+                        <label for="pregunta${nuevoIndice}">Pregunta ${nuevoIndice}: </label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control w-75 pregunta" name="preguntas[${nuevoIndice}][texto]" placeholder="Ejemplo: Nueva Pregunta" required>
+                        <div class="firstInFirst row respuestaContainer">
+                            <div class="input-group w-75">
+                                <button type="button" class="btn" onclick="agregarCampoRespuesta(this)">+</button>
+                                <input type="text" class="form-control w-50 respuesta" name="preguntas[${nuevoIndice}][alternativas][0][texto]" placeholder="Ejemplo: Nueva Respuesta" required>
+                                <input type="number" class="form-control w-5 puntaje" name="preguntas[${nuevoIndice}][alternativas][0][puntos]" placeholder="Puntos" required min="0" max="60" oninput="validarPuntaje(this)">
+                            </div>
+                        </div>
+                        <p class="mensajePuntaje" style="color: red; margin-top: 5px; text-align: center;"></p>
+                    </div>
+                </div>
+                <div class="btnNewContainer">
+                    <button type="button" class="btnNew btn" onclick="eliminarPregunta(this)">Eliminar Pregunta</button>
+                </div>
+            `;
+
+            preguntasContainer.appendChild(nuevaPreguntaContainer);
+        }
+
+    
+        function eliminarPregunta(boton) {
+            boton.closest('.preguntaContainer').remove();
+        }
+    
+        document.addEventListener('DOMContentLoaded', function () {
+            // Modificado para seleccionar la primera pregunta directamente
+            var puntajeInicial = document.querySelector('#preguntasContainer input[type="number"]');
+            if (puntajeInicial) {
+                puntajeInicial.oninput = function () {
+                    validarPuntaje(puntajeInicial);
+                };
+
+                // Asegurar que las respuestas predeterminadas comiencen desde 0
+                var respuestasPredeterminadas = document.querySelectorAll('.preguntaContainer .respuestaContainer .input-group');
+                respuestasPredeterminadas.forEach(function (respuesta, index) {
+                    respuesta.querySelector('.respuesta').setAttribute('name', `preguntas[1][alternativas][${index}][texto]`);
+                    respuesta.querySelector('.puntaje').setAttribute('name', `preguntas[1][alternativas][${index}][puntos]`);
+                });
+            }
+        });
+
+
+    </script>
+    
+</body>
+</html>

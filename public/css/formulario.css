@@ -1,0 +1,99 @@
+.navbar{
+    background-color: #BFD4E8;
+}
+
+.btn-link {
+    font-weight: 400;
+    color: #000000;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-nav .nav-link{
+    color: black;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    flex: 1;
+}
+
+h1{
+    text-align: center;
+    color: #009EE2;
+    text-shadow: 0px 2px 0px #545454;
+    font-family: 'Poppins';
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+h3{
+    text-align: center;
+    font-family: 'Poppins';
+    margin-bottom: 20px;
+}
+
+
+.first-Col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Alinea al final */
+}
+
+.second-Col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinea al inicio */
+}
+
+label{
+    margin-bottom: 10px;
+}
+
+.form-select{
+    width: 300px;
+    margin-bottom: 30px;
+}
+
+button.btn-send{
+    background-color: black;
+    color: white;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+footer {
+    background-color: #BFD4E8;
+    color: #568abb00;
+    text-align: center;
+    margin-top: 20px;
+    
+}
+
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../../font-Family/Poppins-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Asegura que las columnas mantengan el mismo tamaño en pantallas pequeñas */
+@media (max-width: 767px) {
+    .col-md-6 {
+        width: 100%;
+        margin-right: 0; /* Elimina el margen derecho en pantallas pequeñas */
+    }
+
+    .first-Col,
+    .second-Col {
+        align-items: center; /* Alinea al centro en pantallas pequeñas */
+    }
+}

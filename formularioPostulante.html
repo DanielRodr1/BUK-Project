@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-4C2PxmMj1ZI8Y+9H54uN5IsZ6pJuhtO5YOb7WnHk/KR4J6XGz9znTyy7RzyffsVH" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="public/css/formulario.css"/>
+    <title>Formulario Postulante</title>
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="homePostulante.html"><img src="img/logo.png" alt="logo de la empresa" class="img-fluid logoEmpresa"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="homePostulante.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="verConvocatoriaPostulante.php">Convocatorias</a>
+                    </li>
+                </ul>
+                
+                <!-- Nuevo elemento con el ícono a la derecha -->
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <form action="Clases/cerrarSesion.php" method="post" class="nav-link">
+                            <button type="submit" class="btn btn-link">
+                                <i class="far fa-user-circle fa-2x"></i> Cerrar Sesión
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+        
+    <div class="container">
+        <a href="verConvocatoriaPostulante.html">
+            <button class="btn-salir btn" type="button" style="text-decoration: underline; font-weight: bolder; font-size: 18px;">
+                << Regresar
+            </button>
+        </a>
+
+        <h1>Postulación</h1>
+        <h3>FORMULARIO DE POSTULACIÓN</h3>
+        <form action="verConvocatoriaPostulante.html" method="get" id="postulacionForm" onsubmit="return validateForm()">
+            <div class="row">
+                <div class="col-md-6 first-Col">
+                    <div class="preg">
+                        <label for="pregunta1">1.- ¿Cuál es su grado de estudio?</label>
+                        <select class="form-select" id="pregunta1" aria-label="Pregunta #1">
+                            <option selected>Seleccione su  respuesta</option>
+                            <option value="1">Respuesta #1</option>
+                            <option value="2">Respuesta #2</option>
+                            <option value="3">Respuesta #3</option>
+                        </select>
+                    </div>
+    
+                    <div class="preg">
+                        <label for="pregunta2">2.- ¿Sus estudios fueron culminados?</label>
+                        <select class="form-select" id="pregunta2" aria-label="Pregunta #2">
+                            <option selected>Seleccione su  respuesta</option>
+                            <option value="1">Respuesta #1</option>
+                            <option value="2">Respuesta #2</option>
+                        </select>
+                    </div>
+    
+                    <div class="preg">
+                        <label for="pregunta3">3.- Pregunta #3</label>
+                        <select class="form-select" id="pregunta3" aria-label="Pregunta #3">
+                            <option selected>Seleccione su  respuesta</option>
+                            <option value="1">Respuesta #1</option>
+                            <option value="2">Respuesta #2</option>
+                            <option value="3">Respuesta #3</option>
+                        </select>
+                    </div>
+                </div>
+    
+                <div class="col-md-6 second-Col">
+                    <div class="preg">
+                        <label for="pregunta4">4.- Pregunta #4</label>
+                        <select class="form-select" id="pregunta4" aria-label="Pregunta #4">
+                            <option selected>Seleccione su  respuesta</option>
+                            <option value="1">Respuesta #1</option>
+                            <option value="2">Respuesta #2</option>
+                            <option value="3">Respuesta #3</option>
+                        </select>
+                    </div>
+    
+                    <div class="preg">
+                        <label for="pregunta5">5.- Pregunta #5</label>
+                        <select class="form-select" id="pregunta5" aria-label="Pregunta #5">
+                            <option selected>Seleccione su  respuesta</option>
+                            <option value="1">Respuesta #1</option>
+                            <option value="2">Respuesta #2</option>
+                            <option value="3">Respuesta #3</option>
+                        </select>
+                    </div>
+    
+                    <div class="preg">
+                        <label for="pregunta6">6.- Pregunta #6</label>
+                        <select class="form-select" id="pregunta6" aria-label="Pregunta #6">
+                            <option selected>Seleccione su  respuesta</option>
+                            <option value="1">Respuesta #1</option>
+                            <option value="2">Respuesta #2</option>
+                            <option value="3">Respuesta #3</option>
+                        </select>
+                    </div>
+                </div>
+            </div>  
+
+            <div id="errorMessage" class="error-message text-center" style="margin-top: 5px; font-weight: bolder ;margin-bottom: 5px ;color:red"></div>
+            <button class="btn-send btn">ENVIAR</button>
+        </form>     
+            
+    </div>
+    <footer>
+        ola <br> ol
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/761684499b.js" crossorigin="anonymous"></script>
+    <script>
+        function validateForm() {
+            var isValid = true;
+            var errorMessage = document.getElementById('errorMessage');
+            
+            // Verificar cada pregunta
+            for (var i = 1; i <= 6; i++) {
+                var pregunta = document.getElementById('pregunta' + i);
+                
+                // Validar que al menos una opción esté seleccionada
+                if (pregunta.value === 'Seleccione su respuesta') {
+                    // Mostrar el mensaje de error
+                    errorMessage.innerHTML = 'Seleccione una respuesta por favor.';
+                    // Indicar que el formulario no es válido
+                    isValid = false;
+                    // Romper el bucle para evitar más verificaciones
+                    break;
+                }
+            }
+
+            // Limpiar el mensaje de error si todas las selecciones son válidas
+            if (isValid) {
+                errorMessage.innerHTML = '';
+            }
+
+            return isValid;
+        }
+    </script>
+    
+</body>
+</html>

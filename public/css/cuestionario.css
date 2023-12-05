@@ -1,0 +1,70 @@
+.firstCont{
+    min-height: 77.7vh;
+}
+
+.btn-link {
+    font-weight: 400;
+    color: #000000;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.navbar {
+    background-color: #BFD4E8;
+}
+
+.navbar-nav .nav-link {
+    color: black;
+}
+
+h2{
+    text-align: center;
+    margin-bottom: 20px;
+    color: #009EE2;
+}
+
+.input-group > label{
+    position: relative;
+    top: 5%
+}
+
+.input-group{
+    padding: 0 0;
+    margin-top: 8px;
+}
+
+.input-group .btn{
+    width: 50px;
+    height: 39px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    align-content: center;
+}
+
+.input-group > .form-control{
+    margin-right: 10px;
+}
+
+button.btnNew{
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+}
+
+button.btn-1{
+    display: block;
+    margin: auto;
+    margin-bottom: 40px;
+    margin-top: 20px;
+}
+
+footer {
+    background-color: #BFD4E8;
+    color: #568abb00;
+    text-align: center;
+    margin-top: 40px;
+}
+

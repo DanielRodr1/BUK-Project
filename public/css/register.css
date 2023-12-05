@@ -1,0 +1,88 @@
+body{
+    max-height: 100vh;
+    display: flex;
+}
+
+.col-md-7{ /*PRIMERA Y SEGUNDA COLUMNA*/
+    position: relative;
+    padding: 0px 0px;
+}
+
+.Empresa{ /*Nombre de la empresa*/
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgb(255, 255, 255);/* Puedes ajustar el color según tu diseño */
+    font-size: 100px; /* Puedes ajustar el tamaño de la fuente según tu diseño */
+    text-decoration: none;
+    font-family: Acme;
+}
+
+
+.img-fluid{ /*IMAGEN DE LA PRIMERA COLUMNA*/
+    height: 100vh;
+    width: 100%;
+}
+
+form{ /*FORMULARIO DE LA SEGUNDA COLUMNA*/
+    text-align: center;
+    margin-top: 25px;
+}
+
+form h3{ /*TÍTULO DEL FORMULARIO DE LA SEGUNDA COLUMNA*/
+    text-align: center;
+    color: #009EE2;
+    font-family: Acme;
+    font-size: 30px;
+
+}
+
+.form-floating{ /*EL CONJUNTO DEL INPUT Y LABEL DEL FORMULARIO DE LA SEGUNDA COLUMNA*/
+    width: 350px;
+    margin-bottom: 12px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-floating > .form-control{ /*LOS FORM CONTROL FORMULARIO DE LA SEGUNDA COLUMNA*/
+    border-radius: 10px;
+    border-color: #1bb6f9;
+    border-width: 2px;
+}
+
+.form-floating > label { /*LOS LABELS FORMULARIO DE LA SEGUNDA COLUMNA*/
+    color: #070707;
+}
+
+.btn{ /*BOTÓN DEL FORMULARIO DE LA SEGUNDA COLUMNA*/
+    background-color: black;
+    width: 130px;
+    height: 40px;
+    color: #FFFFFF;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+p{ /*CONJUNTO DE LAS ÚLTIMAS PALABRAS DEL FORMULARIO DE LA SEGUNDA COLUMNA*/
+    text-align: center;
+}
+
+.phrase{
+    text-decoration: none;
+    color: black;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+
+@font-face {
+    font-family: 'Acme';
+    src: url('../../font-Family/Acme-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+}

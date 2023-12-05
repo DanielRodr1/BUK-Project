@@ -1,0 +1,62 @@
+body{
+    background: linear-gradient(to bottom, #70bdf3, #ffffff);
+    min-height: 100vh;
+    display: flex;
+}
+
+div.container a.Empresa{ /*logo de la empresa*/
+    text-decoration: none;
+    font-family: Acme;
+    font-size: 80px;
+    color: #ffffff;
+}
+
+div.container form.login h2{
+    font-family: Acme;
+    font-size: 50px;
+    color: #0085be;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    text-shadow: 0px 0px 10px #8686866a;
+}
+
+div.container form.login{ /*ESTILO DEL FORMULARIO GENERAL*/
+    display: grid;
+    place-items: center;
+}
+
+div.container form.login div.form-floating input{ /*ESTILO DE INPUTS*/
+    background-color: transparent;
+    border-color: #009EE2;
+    border-width: 2px;
+    border-radius: 10px;
+    width: 350px;
+}
+
+div.container form.login button.btn-1{
+    margin-top: 50px;
+    margin-bottom:5px;
+}
+
+div.container form.login button.btn-2{
+    margin-top: 10px
+}
+
+div.container form.login p{
+    margin-top: 80px;
+    font-size: 20px;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+    font-weight: bolder;
+}
+
+
+@font-face {
+    font-family: 'Acme';
+    src: url('../../font-Family/Acme-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+}

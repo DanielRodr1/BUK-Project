@@ -1,0 +1,67 @@
+.navbar {
+    background-color: #BFD4E8;
+}
+
+.navbar-nav .nav-link {
+    color: black;
+}
+
+.btn-link {
+    font-weight: 400;
+    color: #000000;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+h1{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #009EE2;
+}
+
+h2{
+    margin-top: 10px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.row{
+    margin-bottom: 30px;
+}
+
+p{
+    font-weight: bolder;
+    font-size: 30px;
+    text-align: center;
+} 
+
+.rowF11 > .row{
+    margin: 0 0;
+    margin-bottom: 20px;
+}
+
+button.btn-1{
+    display: block;
+    margin: auto;
+    margin-bottom: 40px;
+}
+
+footer {
+    background-color: #BFD4E8;
+    color: #568abb00;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Estilo para pantallas pequeñas */
+@media (max-width: 767px) {
+    .formOne, .formTwo, .btn-1 {
+      margin: 0 auto; /* Centrar horizontalmente en pantallas pequeñas */
+    }
+    
+    .formTwo input {
+      width: 100%; /* Hacer que los inputs de la segunda form ocupen el ancho completo */
+    }
+  }

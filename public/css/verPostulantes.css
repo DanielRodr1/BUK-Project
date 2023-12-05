@@ -1,0 +1,14 @@
+.navbar {
+    background-color: #BFD4E8;
+}
+
+.navbar-nav .nav-link {
+    color: black;
+}
+
+/* Estilo para limitar la altura de la tabla y agregar una barra de desplazamiento vertical */
+.table-container {
+    max-height: 400px; /* Ajusta según tu preferencia */
+    overflow-y: auto;
+}
+
