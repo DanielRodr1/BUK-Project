@@ -93,6 +93,20 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/761684499b.js" crossorigin="anonymous"></script>
     <script>
+        function validarPuntaje(input) {
+            const valor = parseInt(input.value);
+            const mensajeError = input.closest('.preguntaContainer').querySelector('.mensajePuntaje');
+
+            if (valor <= 0 || isNaN(valor)) {
+                mensajeError.textContent = 'El puntaje debe ser un número positivo.';
+                input.classList.add('is-invalid');
+            } else {
+                mensajeError.textContent = '';
+                input.classList.remove('is-invalid');
+            }
+        }
+
+
         function validarFormulario() {
             // Realiza cualquier validación adicional aquí si es necesario
             

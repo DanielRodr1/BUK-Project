@@ -1,3 +1,7 @@
+<?php
+$duplicada = isset($_GET['error']) && $_GET['error'] === 'duplicada';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,7 +50,7 @@
 
     <div class="container">
         
-        <a href="verConvocatoriaJefe.html">
+        <a href="verConvocatoriaJefe.php">
             <button class="btn" type="button" style="font-size: 17px; font-weight: bolder; text-decoration: underline;">
                 << Regresar
             </button>
@@ -54,13 +58,13 @@
         <h1>Abrir Concurso de Convocatoria</h1>
         <h2>CONCURSO DE POSTULACIÓN</h2>
         
-        <form id="formularioConvocatoria" class="form-inline formOne" action="Clases/Convocatoria.php" method="post">
+        <form id="formularioConvocatoria" class="form-inline formOne" action="Clases/guardarConvocatoria.php" method="post">
             <div class="rowF0 row">
                 <div class="col-md-4 text-md-end align-self-center">
                     <label for="workArea">Área de Trabajo: </label>
                 </div>
                 <div class="col-md-8">
-                    <input type="text" class="form-control w-50" id="workArea" placeholder="Ejemplo: Asistente de contabilidad" name="workArea" required>
+                    <input type="text" class="form-control w-50" id="workArea" placeholder="Ejemplo: Asistente de contabilidad" name="workArea" required maxlength="150">
                 </div>
             </div>
             
@@ -69,7 +73,7 @@
                     <label for="salary">Salario: </label>
                 </div>
                 <div class="col-md-8">
-                    <input type="number" class="form-control w-50" id="salary" placeholder="Ejemplo: 15000" required oninput="validatePositiveNumber(this)" name="salary">
+                    <input type="number" class="form-control w-50" id="salary" placeholder="Ejemplo: 15000" required oninput="validatePositiveNumber(this)" name="salary" maxlength="150">
                     <!-- Agrega un div para mostrar el mensaje de error -->
                     <div id="salaryError" class="error-message"></div>
                 </div>
@@ -80,7 +84,7 @@
                     <label for="modality">Modalidad: </label>
                 </div>
                 <div class="col-md-8">
-                    <input type="text" class="form-control w-50" id="modality" placeholder="Remoto o Presencial" name="modality" required>
+                    <input type="text" class="form-control w-50" id="modality" placeholder="Remoto o Presencial" name="modality" required maxlength="150">
                 </div>
             </div>
             
@@ -89,7 +93,7 @@
                     <label for="timeWork">Turno de Trabajo: </label>
                 </div>
                 <div class="col-md-8">
-                    <input type="text" class="form-control w-50" id="timeWork" placeholder="Tiempo Parcial, Tiempo Completo" name="timeWork" required>
+                    <input type="text" class="form-control w-50" id="timeWork" placeholder="Parcial o Completo" name="timeWork" required maxlength="150">
                 </div>
             </div>
             
@@ -98,9 +102,9 @@
                     <label for="vacancies">Nro Vacantes: </label>
                 </div>
                 <div class="col-md-8">
-                    <input type="number" class="form-control w-50" id="vacancies" placeholder="2" name="vacancies" required oninput="validatePositiveNumber(this)">
+                    <input type="number" class="form-control w-50" id="vacancies" placeholder="2" name="vacancies" required oninput="validatePositiveNumber(this)" maxlength="150">
                     <!-- Agrega un div para mostrar el mensaje de error -->
-                    <div id="vacantesError" class="error-message"></div>
+                    <div id="vacanciesError" class="error-message"></div>
                 </div>
             </div>
             
@@ -111,7 +115,7 @@
                 <div class="col-md-8">
                     <div id="responsabilidadesContainer">
                         <div class="input-group w-50">
-                            <input type="text" class="form-control" name="responsibilities[]" placeholder="Ejemplo: 1.- Testear softwares nuevos" required>
+                            <input type="text" class="form-control" name="responsibilities[]" placeholder="Ejemplo: 1.- Testear softwares nuevos" required maxlength="150">
                             <button type="button" class="btn" onclick="agregarCampoResponsabilidades('responsabilidadesContainer', true, 'responsibilities[]')">
                                 <i class="fas fa-plus"></i>
                             </button>
@@ -127,7 +131,7 @@
                 <div class="col-md-8">
                     <div id="beneficiosContainer">
                         <div class="input-group w-50">
-                            <input type="text" class="form-control" name="benefits[]" placeholder="Ejemplo: Asistente de contabilidad" required>
+                            <input type="text" class="form-control" name="benefits[]" placeholder="Ejemplo: Asistente de contabilidad" maxlength="150" required>
                             <button type="button" class="btn" onclick="agregarCampoBeneficios('beneficiosContainer', true, 'benefits[]')">
                                 <i class="fas fa-plus"></i>
                             </button>
@@ -145,7 +149,7 @@
                 <div class="col-md-8">
                     <div id="requisitosContainer">
                         <div class="input-group w-50">
-                            <input type="text" class="form-control" name="requirements[]" placeholder="Ejemplo: Egresado de Universidad" required>
+                            <input type="text" class="form-control" name="requirements[]" placeholder="Ejemplo: Egresado de Universidad" required maxlength="150">
                             <button type="button" class="btn" onclick="agregarCampo('requisitosContainer', true, 'requirements[]')">
                                 <i class="fas fa-plus"></i>
                             </button>                            
@@ -159,7 +163,7 @@
                     <label for="hiringProcess">Proceso de Contratación: </label>
                 </div>
                 <div class="col-md-8">
-                    <input type="text" class="form-control w-50" id="hiringProcess" placeholder="Describir el proceso" name="hiringProcess" required>
+                    <input type="text" class="form-control w-50" id="hiringProcess" placeholder="Describir el proceso" name="hiringProcess" required maxlength="150">
                 </div>
             </div>
             
@@ -170,7 +174,7 @@
                 <div class="col-md-8">
                     <div id="evaluatorsContainer">
                         <div class="input-group w-50">
-                            <input type="text" class="form-control w-50" name="evaluators[]" placeholder="Ejemplo: Ing. Edward Castillo" required>
+                            <input type="text" class="form-control w-50" name="evaluators[]" placeholder="Ejemplo: Ing. Edward Castillo" required maxlength="150">
                             <button type="button" class="btn" onclick="agregarCampo('evaluatorsContainer', true, 'evaluators[]')">
                                 <i class="fas fa-plus"></i>
                             </button>                            
@@ -184,7 +188,7 @@
                     <label for="selectionCriteria">Criterios de Selección: </label>
                 </div>
                 <div class="col-md-8">
-                    <input type="text" class="form-control w-50" id="selectionCriteria" placeholder="Ejemplo: Se escogerá al postulante de acuerdo ..." name="selectionCriteria" required>
+                    <input type="text" class="form-control w-50" id="selectionCriteria" placeholder="Ejemplo: Se escogerá al postulante de acuerdo ..." name="selectionCriteria" required maxlength="150">
                 </div>
             </div>
             
@@ -193,7 +197,7 @@
                     <label for="notifyApplicant">Comunicar al Postulante: </label>
                 </div>
                 <div class="col-md-8">
-                    <input type="text" class="form-control w-50" id="notifyApplicant" placeholder="Ejemplo: Asistente de contabilidad" name="notifyApplicant" required>
+                    <input type="text" class="form-control w-50" id="notifyApplicant" placeholder="Ejemplo: Asistente de contabilidad" name="notifyApplicant" required maxlength="150">
                 </div>
             </div>
             
@@ -236,8 +240,27 @@
                     </div>
                 </div>
             </div>            
-            <button class="btn-1 btn btn-dark" type="button" style="width: 160px;" onclick="enviarFormulario()">Crear Preguntas</button>
-    </form>
+            <!--<button class="btn-1 btn btn-dark" type="button" style="width: 160px;" onclick="enviarFormulario()">Crear Preguntas</button>-->
+            <button class="btn-1 btn btn-dark" type="submit" style="width: 160px;">Crear Preguntas</button>
+        </form>
+    </div>
+
+    <!-- Modal para notificar que ya existe una convocatoria para el mismo puesto y fecha -->
+    <div class="modal fade" id="modalErrorConvocatoria" tabindex="-1" aria-labelledby="modalErrorConvocatoriaLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalErrorConvocatoriaLabel">Error al crear la convocatoria</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Ya existe una convocatoria para el mismo área de trabajo y fecha de inicio.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
     </div>
     
     <footer>
@@ -247,22 +270,32 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/761684499b.js" crossorigin="anonymous"></script>
 
+    <?php if ($duplicada): ?>
+        <!-- Mostrar el modal automáticamente si hay duplicado -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var modalDuplicado = new bootstrap.Modal(document.getElementById('modalErrorConvocatoria'));
+                modalDuplicado.show();
+            });
+        </script>
+    <?php endif; ?>
+
     <script>
         function validatePositiveNumber(input) {
             // Convierte el valor a un número
             var value = parseFloat(input.value);
 
-            // Obtén el div del mensaje de error
+            // Obtén el div del mensaje de error correspondiente
             var errorDiv = document.getElementById(input.id + 'Error');
 
-            // Verifica si el valor es un número y es mayor a 0
-            if (isNaN(value) || value < 0) {
+            // Verifica si el valor es un número y es mayor o igual a 0
+            if (isNaN(value) || value <= 0) {
                 // Muestra un mensaje de error en el div correspondiente
-                errorDiv.innerHTML = 'Ingrese un número válido y mayor a 0.';
+                errorDiv.innerHTML = 'Ingrese un número válido y mayor o igual a 0.';
                 // Cambia el estilo para mostrar en rojo
                 errorDiv.style.color = 'red';
-                // Restablece el valor a 0 o realiza la acción que desees
-                input.value = 0;
+                // Restablece el valor a vacío para obligar al usuario a corregirlo
+                input.value = '';
             } else {
                 // Si no hay error, borra el mensaje y restablece el estilo
                 errorDiv.innerHTML = '';
@@ -336,6 +369,10 @@
             nuevoInput.type = 'text';
             nuevoInput.className = 'form-control';
             nuevoInput.placeholder = 'Nuevo ejemplo';
+            nuevoInput.required = true;
+
+            // Limitar los caracteres a 150
+            nuevoInput.maxLength = 150;
 
             // Configura el atributo 'name' del nuevo campo
             nuevoInput.name = nombreOriginal;
@@ -390,8 +427,19 @@
 
         // Función para enviar el formulario con campos dinámicos
         function enviarFormulario() {
-            // Agrega los valores de los campos dinámicos al formulario antes de enviarlo
-            document.getElementById('formularioConvocatoria').submit();
+            var inputs = document.querySelectorAll('input[type="text"]:not(.fecha-input)');
+            var isValid = true;
+
+            inputs.forEach(function(input) {
+                if (input.value.length > 150) {
+                    alert('El campo "' + input.placeholder + '" no debe exceder los 150 caracteres.');
+                    isValid = false;
+                }
+            });
+
+            if (isValid) {
+                document.getElementById('formularioConvocatoria').submit();
+            }
         }
     </script>
 

@@ -49,14 +49,27 @@
             $tipoInterfaz = 'postulante';
             include_once 'Clases/Convocatoria.php'; // Asegúrate de poner la ruta correcta
             $convocatoria = new Convocatoria();
-            echo $convocatoria->Listar_convocatorias($tipoInterfaz);
+            $resultadoConvocatorias = $convocatoria->Listar_convocatorias($tipoInterfaz);
+
+            // Verificar si se obtuvieron convocatorias correctamente y si hay convocatorias disponibles
+            if ($resultadoConvocatorias !== false && !empty($resultadoConvocatorias)) {
+                // Iterar sobre las convocatorias
+                foreach ($resultadoConvocatorias as $convocatoriaxd) {
+                    // Acceder a los valores
+                    $htmlConvocatoria = $convocatoriaxd['html'];
+                    $idConvocatoria = $convocatoriaxd['announcement_id'];
+                    echo $htmlConvocatoria;
+                    echo $convocatoria->listar_bases($idConvocatoria);
+                }
+            } else {
+                // Mostrar el mensaje cuando no haya convocatorias vigentes
+                echo '<div class="d-flex justify-content-center align-items-center" style="height: 60vh;">
+                        <h2 class="text-center">NO HAY CONVOCATORIAS VIGENTES</h2>
+                      </div>';
+            }
+            
         ?>
 
-        <?php
-            include_once 'Clases/Convocatoria.php'; // Asegúrate de poner la ruta correcta
-            $base = new Convocatoria();
-            echo $base->listar_bases();
-        ?>
 
 
     <footer>
@@ -66,9 +79,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/761684499b.js" crossorigin="anonymous"></script>
     <script>
-        <!-- Dentro de la función redirigirPostulacion -->
-        function redirigirPostulacion(convocatoriaId) {
-                window.location.href = "formularioPostulante.html";
+        function redirigirPostulacion(idannouncement) {
+            // Guardar el id de la en el get
+                window.location.href = "formularioPostulante.php?idannouncement=" + idannouncement;
         }
     </script>
 

@@ -20,17 +20,17 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" href="Index.php">Inicio</a>
+                        <a class="nav-link active" href="Index.html">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="verConvocatoriaNoLogin.html">Convocatorias</a>
+                        <a class="nav-link active" href="verConvocatoriaNoLogin.php">Convocatorias</a>
                     </li>
                 </ul>
                 
                 <!-- Nuevo elemento con el ícono a la derecha -->
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="Login.html">
+                        <a class="nav-link" href="Login.php">
                             <i class="far fa-user-circle fa-2x"> Iniciar Sesión</i>
                         </a>
                     </li>
@@ -46,52 +46,27 @@
             $tipoInterfaz = 'nologin';
             include_once 'Clases/Convocatoria.php'; // Asegúrate de poner la ruta correcta
             $convocatoria = new Convocatoria();
-            echo $convocatoria->Listar_convocatorias($tipoInterfaz);
+            $resultadoConvocatorias = $convocatoria->Listar_convocatorias($tipoInterfaz);
+
+            // Verificar si se obtuvieron convocatorias correctamente y si hay convocatorias disponibles
+            if ($resultadoConvocatorias !== false && !empty($resultadoConvocatorias)) {
+                // Iterar sobre las convocatorias
+                foreach ($resultadoConvocatorias as $convocatoriaxd) {
+                    // Acceder a los valores
+                    $htmlConvocatoria = $convocatoriaxd['html'];
+                    $idConvocatoria = $convocatoriaxd['announcement_id'];
+                    echo $htmlConvocatoria;
+                    echo $convocatoria->listar_bases($idConvocatoria);
+                }
+            } else {
+                // Mostrar el mensaje cuando no haya convocatorias vigentes
+                echo '<div class="d-flex justify-content-center align-items-center" style="height: 60vh;">
+                        <h2 class="text-center">NO HAY CONVOCATORIAS VIGENTES</h2>
+                      </div>';
+            }
         ?>
 
-        <div class="modal fade" id="basesModal" tabindex="-1" aria-labelledby="basesModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="basesModalLabel">Bases de Convocatoria</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-6 border-end border-2 border-dark">
-                                    <h6>Requisitos:</h6>
-                                    <ul>
-                                        <li>Educación Mínima Técnico de informática</li>
-                                        <li>Experiencia Laboral mínima de 2 años</li>
-                                    </ul>
-                                    <h6>Proceso de Contratación:</h6>
-                                    <p>Los candidatos interesados deben contestar el formulario sobre su información antes de 28/10/2023.</p>
-                                    <h6>Cronograma:</h6>
-                                    <ul>
-                                        <li>Fecha de Inicio: 28/10/2023</li>
-                                        <li>Fecha de Límite: 10/10/2023</li>
-                                        <li>Fecha de Entrevista: 12/11/2023</li>
-                                        <li>Anuncio de Candidato: 14/11/2023</li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-6">
-                                    <h6>Comité Evaluador:</h6>
-                                    <ul>
-                                        <li>Juan Román Silver</li>
-                                        <li>José Miguel Silva</li>
-                                    </ul>
-                                    <h6>Criterios de selección:</h6>
-                                    <p>La decisión final de contratación se basará en la experiencia, habilidades técnicas y desempeño en la entrevista y la evaluación práctica.</p>
-                                    <h6>Comunicar al postulante:</h6>
-                                    <p>El candidato será notificado por correo electrónico, mensaje de texto sobre el resultado del proceso de selección antes del 14/11/2023.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
 
         <!-- Modal NECESITAS ESTAR LOGEADO -->
         <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
@@ -103,7 +78,7 @@
                     </div>
                     <div class="modal-footer justify-content-center">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Okey, entiendo</button>
-                        <a href="Login.html" class="btn btn-primary">Ir al Login</a>
+                        <a href="Login.php" class="btn btn-primary">Ir al Login</a>
                     </div>
                 </div>
             </div>
@@ -116,6 +91,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/761684499b.js" crossorigin="anonymous"></script>
-    
+
 </body>
 </html>

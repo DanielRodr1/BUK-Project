@@ -6,6 +6,14 @@
     color: black;
 }
 
+.btn {
+    font-weight: 400;
+    color: #000000;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
 /* Estilo para limitar la altura de la tabla y agregar una barra de desplazamiento vertical */
 .table-container {
     max-height: 400px; /* Ajusta según tu preferencia */

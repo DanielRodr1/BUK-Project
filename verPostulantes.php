@@ -33,9 +33,11 @@
                 <!-- Nuevo elemento con el ícono a la derecha -->
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="Login.html">
-                            <i class="far fa-user-circle fa-2x"> Cerrar Sesión</i>
-                        </a>
+                        <form action="Clases/cerrarSesion.php" method="post" class="nav-link">
+                            <button type="submit" class="btn">
+                                <i class="far fa-user-circle fa-2x"></i> Cerrar Sesión
+                            </button>
+                        </form>
                     </li>
                 </ul>
             </div>
@@ -63,77 +65,39 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Datos de 10 postulantes -->
-                    <tr>
-                        <td>1</td>
-                        <td>Apellido1</td>
-                        <td>Nombre1</td>
-                        <td>123456789</td>
-                        <td>50</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Apellido2</td>
-                        <td>Nombre2</td>
-                        <td>987654321</td>
-                        <td>40</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Apellido3</td>
-                        <td>Nombre3</td>
-                        <td>555666777</td>
-                        <td>55</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Apellido4</td>
-                        <td>Nombre4</td>
-                        <td>111222333</td>
-                        <td>30</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>Apellido5</td>
-                        <td>Nombre5</td>
-                        <td>999888777</td>
-                        <td>20</td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>Apellido6</td>
-                        <td>Nombre6</td>
-                        <td>444555666</td>
-                        <td>45</td>
-                    </tr>
-                    <tr>
-                        <td>7</td>
-                        <td>Apellido7</td>
-                        <td>Nombre7</td>
-                        <td>777888999</td>
-                        <td>35</td>
-                    </tr>
-                    <tr>
-                        <td>8</td>
-                        <td>Apellido8</td>
-                        <td>Nombre8</td>
-                        <td>666555444</td>
-                        <td>25</td>
-                    </tr>
-                    <tr>
-                        <td>9</td>
-                        <td>Apellido9</td>
-                        <td>Nombre9</td>
-                        <td>333222111</td>
-                        <td>50</td>
-                    </tr>
-                    <tr>
-                        <td>10</td>
-                        <td>Apellido10</td>
-                        <td>Nombre10</td>
-                        <td>123654789</td>
-                        <td>15</td>
-                    </tr>
+                    <?php
+                        require_once __DIR__ . '/Clases/Convocatoria.php'; // Asegúrate de poner la ruta correcta
+
+                        $convocatoria = new Convocatoria();
+                        if (isset($_GET['idannouncement'])) {
+                            $announcement_id = $_GET['idannouncement'];
+                        } else {
+                        
+                            die("ID de convocatoria no proporcionado");
+                        }   
+                        $postulantes = $convocatoria->obtenerPostulantesPorConvocatoria($announcement_id);
+
+                        // Si no hay postulantes, mostrar el mensaje "NO HAY POSTULANTES AÚN"
+                        if (empty($postulantes)) {
+                            echo '<div class="text-center mt-5" style="font-size: 24px; font-weight: bold; color: #ff0000;">NO HAY POSTULANTES AÚN</div>';
+                        } else {
+                            
+
+                            foreach ($postulantes as $key => $postulante) {
+                                echo '<tr>';
+                                echo '<td>' . ($key + 1) . '</td>';
+                                echo '<td>' . $postulante['lastname'] . '</td>';
+                                echo '<td>' . $postulante['name'] . '</td>';
+                                echo '<td>' . $postulante['telephone'] . '</td>';
+                                echo '<td>' . $postulante['puntaje'] . '</td>';
+                                echo '</tr>';
+                            }
+
+                            echo '</tbody>';
+                            echo '</table>';
+                            echo '</div>';
+                        }
+                    ?>
                 </tbody>
             </table>
         </div>

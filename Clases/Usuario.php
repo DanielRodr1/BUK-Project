@@ -1,6 +1,8 @@
 <?php
 include_once '../BD/ConexionDB.php';
 
+session_start(); // Asegúrate de iniciar la sesión
+
 class Usuario
 {
     private $conn;
@@ -55,17 +57,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['email']) && isset($_PO
 
     if ($sesion) {
         $rol = $sesion['rol'];
+        $email = $_POST['email'];
 
-        // Redirige según el rol
-        if ($rol == 'trabajador') {
-            header("Location: ../homeJefe.html");
-            exit();
-        } elseif ($rol == 'postulante') {
-            header("Location: ../homePostulante.html");
-            exit();
-        }
+        // Establecer la cookie para el email del usuario
+        setcookie('email', $email, time() + (86400 * 30), "/"); // Cookie válida por 30 días
+
+        // Respuesta exitosa con JSON
+        echo json_encode(['success' => true, 'rol' => $rol, 'email' => $email]);
     } else {
-        echo "Credenciales incorrectas.";
+        // Respuesta de error con JSON
+        echo json_encode(['success' => false, 'message' => 'Las credenciales ingresadas son incorrectas.']);
     }
+    exit();
 }
 ?>

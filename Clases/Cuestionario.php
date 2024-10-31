@@ -11,7 +11,7 @@ class Cuestionario
         $conexionBD = new ConexionBD();
         $this->conn = $conexionBD->obtenerConexion();
     }
-
+    
     public function guardarCuestionario($datosCuestionario)
     {
         try {

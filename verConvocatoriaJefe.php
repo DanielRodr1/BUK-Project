@@ -33,7 +33,7 @@
                         <a class="nav-link active" href="verConvocatoriaJefe.php">Convocatorias</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="abrirConvocatoria.html">Crear Convocatoria</a>
+                        <a class="nav-link active" href="abrirConvocatoria.php">Crear Convocatoria</a>
                     </li>
                 </ul>
 
@@ -56,12 +56,23 @@
     <div class="contMain container">
 
         <?php
-        $tipoInterfaz = 'jefe';
-        include_once 'Clases/Convocatoria.php'; // Asegúrate de poner la ruta correcta
-        $convocatoria = new Convocatoria();
-        echo $convocatoria->Listar_convocatorias($tipoInterfaz);
-        ?>
+            $tipoInterfaz = 'jefe';
+            include_once 'Clases/Convocatoria.php';
+            $convocatoria = new Convocatoria();
+            $resultadoConvocatorias = $convocatoria->Listar_convocatorias($tipoInterfaz);
 
+            if ($resultadoConvocatorias !== false && !empty($resultadoConvocatorias)) {
+                foreach ($resultadoConvocatorias as $convocatoriaxd) {
+                    $htmlConvocatoria = $convocatoriaxd['html'];
+                    echo $htmlConvocatoria;
+                    echo $convocatoria->listar_bases($convocatoriaxd['announcement_id']);
+                }
+            } else {
+                echo '<div class="d-flex justify-content-center align-items-center" style="height: 60vh;">
+                        <h2 class="text-center">NO HAY CONVOCATORIAS VIGENTES</h2>
+                    </div>';
+            }
+        ?>
 
         <!-- Modal para "Concurso Finalizado" -->
         <div class="modal fade" id="finConcursoModal" tabindex="-1" aria-labelledby="finConcursoModalLabel"
@@ -92,49 +103,12 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/761684499b.js" crossorigin="anonymous"></script>
-    <script>
-        // Asegúrate de que el código se ejecute cuando el documento esté listo
-        $(document).ready(function () {
-            // Obtener todos los botones con la clase "terminar-concurso-btn"
-            var terminarConcursoBtns = document.getElementsByClassName('terminar-concurso-btn');
-
-            // Iterar sobre cada botón para agregar el evento
-            Array.from(terminarConcursoBtns).forEach(function (btn) {
-                btn.addEventListener('click', function () {
-                    // Cambiar el texto y deshabilitar el botón
-                    this.innerHTML = 'ABRIR CONVOCATORIA';
-                    this.classList.remove('terminar-concurso-btn'); // Eliminar la clase para habilitar el botón
-                    this.removeAttribute('data-bs-toggle'); // Eliminar el atributo data-bs-toggle para desvincular el modal
-                    // Establecer el enlace de redirección en el nuevo botón
-                    this.setAttribute('onclick', 'redirectToCrearConvocatoria()');
-                    // Mostrar el modal de "Concurso Finalizado"
-                    $('#finConcursoModal').modal('show');
-                });
-            });
-
-            // Evento cuando se cierra el modal
-            $('#finConcursoModal').on('hidden.bs.modal', function () {
-                // Restaurar el botón a su estado original cuando se cierra el modal
-                var btn = document.querySelector('.terminar-concurso-btn');
-                if (btn) {
-                    btn.innerHTML = 'TERMINAR CONCURSO';
-                    btn.classList.add('terminar-concurso-btn');
-                    btn.setAttribute('data-bs-toggle', 'modal');
-                    btn.removeAttribute('onclick');
-                }
-            });
-        });
-
-        // Función para redirigir a abrirConvocatoria.html
-        function redirectToCrearConvocatoria() {
-            window.location.href = 'abrirConvocatoria.html';
-        }
-    </script>
+    
 
     <script>
         // Función para redirigir a verPostulantes.html
-        function redirigirVerPostulantes() {
-            window.location.href = 'verPostulantes.html';
+        function redirigirVerPostulantes(idannouncement) {
+            window.location.href = "verPostulantes.php?idannouncement=" + idannouncement;
         }
     </script>
 
